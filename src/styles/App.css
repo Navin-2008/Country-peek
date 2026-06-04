@@ -1,0 +1,94 @@
+/* Header Styles */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  background-color: #0066cc;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header__brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+.header__nav {
+  display: flex;
+  gap: 2rem;
+  font-weight: 600;
+}
+
+.header__nav a {
+  color: white;
+  transition: opacity 0.3s ease;
+}
+
+.header__nav a:hover {
+  opacity: 0.8;
+}
+
+/* Search Bar Styles */
+.search-bar {
+  padding: 2rem;
+}
+
+.search-bar__input {
+  width: 100%;
+  max-width: 480px;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-bar__input:focus {
+  outline: none;
+  border-color: #0066cc;
+  box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+}
+
+/* Home Page Styles */
+.home {
+  padding: 2rem;
+}
+
+.home__placeholder {
+  color: #999;
+  font-size: 1rem;
+  margin-top: 1rem;
+}
+
+/* Not Found Page Styles */
+.not-found {
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+.not-found h2 {
+  font-size: 2rem;
+  color: #0066cc;
+  margin: 0 0 1rem 0;
+}
+
+.not-found p {
+  font-size: 1rem;
+  color: #666;
+  margin: 0 0 2rem 0;
+}
+
+.not-found a {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background-color: #0066cc;
+  color: white;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.not-found a:hover {
+  background-color: #0052a3;
+}
