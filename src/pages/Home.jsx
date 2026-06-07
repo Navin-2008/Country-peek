@@ -1,12 +1,15 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import SearchBar from '../components/SearchBar'
 import CountryCard from '../components/CountryCard'
+import FilterBar from '../components/FilterBar'
 
 function Home() {
   const [query, setQuery] = useState('')
   const [countries, setCountries] = useState([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
+  const [region, setRegion] = useState('All')
+  const [sortBy, setSortBy] = useState('')
 
   useEffect(() => {
     const trimmedQuery = query.trim()
@@ -15,12 +18,15 @@ function Home() {
       setCountries([])
       setError(null)
       setLoading(false)
+      setRegion('All')
+      setSortBy('')
       return
     }
 
     const controller = new AbortController()
     const timer = setTimeout(() => {
       setLoading(true)
+      setError(null)
 
       fetch(`https://restcountries.com/v3.1/name/${trimmedQuery}`, {
         signal: controller.signal,
@@ -51,9 +57,33 @@ function Home() {
     }
   }, [query])
 
+  const displayed = useMemo(() => {
+    const filtered = countries.filter(
+      (country) => region === 'All' || country.region === region,
+    )
+
+    if (sortBy === 'name') {
+      return [...filtered].sort((a, b) =>
+        a.name.common.localeCompare(b.name.common),
+      )
+    }
+
+    if (sortBy === 'population') {
+      return [...filtered].sort((a, b) => b.population - a.population)
+    }
+
+    return filtered
+  }, [countries, region, sortBy])
+
   return (
     <div className="home">
       <SearchBar query={query} onQueryChange={setQuery} />
+      <FilterBar
+        region={region}
+        onRegionChange={setRegion}
+        sortBy={sortBy}
+        onSortChange={setSortBy}
+      />
 
       {loading && <p className="home__status">Loading...</p>}
 
@@ -61,12 +91,16 @@ function Home() {
         <p className="home__status home__status--error">{error}</p>
       )}
 
-      {!loading && !error && countries.length > 0 && (
+      {!loading && !error && displayed.length > 0 && (
         <div className="cards-grid">
-          {countries.map((country) => (
+          {displayed.map((country) => (
             <CountryCard key={country.cca3} country={country} />
           ))}
         </div>
+      )}
+
+      {!loading && !error && query && countries.length > 0 && displayed.length === 0 && (
+        <p className="home__status">No countries match the selected region.</p>
       )}
 
       {!loading && !error && !query && (
