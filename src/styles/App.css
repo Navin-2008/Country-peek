@@ -145,6 +145,35 @@
   font-weight: 600;
 }
 
+.fav-btn {
+  margin-top: 1rem;
+  width: fit-content;
+  background: var(--button-bg);
+  color: var(--button-text);
+  border: 1px solid var(--input-border);
+  border-radius: 999px;
+  padding: 0.5rem 0.85rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.fav-btn:hover {
+  background: var(--header-bg);
+  color: var(--header-text);
+}
+
+.fav-btn--saved {
+  background: #ffeded;
+  color: #b71818;
+  border-color: #f5b7b7;
+}
+
+.fav-btn--saved:hover {
+  background: #ffd6d6;
+}
+
 .home {
   padding: 2rem;
 }
