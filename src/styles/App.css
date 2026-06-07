@@ -345,3 +345,53 @@
 .page-status--error {
   color: #b12704;
 }
+
+.header {
+  gap: 1rem;
+}
+
+.header__nav a,
+.theme-toggle,
+.back-btn {
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--header-bg);
+  outline-offset: 2px;
+}
+
+@media (max-width: 600px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+  }
+
+  .header__nav {
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .header__nav a,
+  .theme-toggle {
+    flex: 1 1 auto;
+  }
+}
+
+@media (max-width: 500px) {
+  .cards-grid {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .country-page__details {
+    grid-template-columns: 1fr;
+  }
+}

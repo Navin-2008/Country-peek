@@ -65,11 +65,9 @@ function CountryPage() {
               <p>
                 <span>Region:</span> {region}
               </p>
-              {subregion && (
-                <p>
-                  <span>Subregion:</span> {subregion}
-                </p>
-              )}
+              <p>
+                <span>Subregion:</span> {subregion ?? 'N/A'}
+              </p>
               <p>
                 <span>Capital:</span> {capital?.[0] ?? 'N/A'}
               </p>
@@ -85,11 +83,11 @@ function CountryPage() {
             </div>
           </div>
 
-          {borders && borders.length > 0 && (
-            <div className="country-page__borders">
-              <p>
-                <span>Borders:</span>
-              </p>
+          <div className="country-page__borders">
+            <p>
+              <span>Borders:</span> {borders && borders.length > 0 ? '' : 'None'}
+            </p>
+            {borders && borders.length > 0 && (
               <div className="border-badges">
                 {borders.map((border) => (
                   <span key={border} className="border-badge">
@@ -97,8 +95,8 @@ function CountryPage() {
                   </span>
                 ))}
               </div>
-            </div>
-          )}
+            )}
+          </div>
         </div>
       </div>
     </div>
